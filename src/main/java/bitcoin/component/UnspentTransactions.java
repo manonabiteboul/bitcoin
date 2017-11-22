@@ -39,7 +39,7 @@ public class UnspentTransactions {
         OutputsResponse outputs = OutputsResponse.builder().outputs(new ArrayList<Output>()).build();
         for(BlockchainOutput blockchainOutput : blockchainOutputs) {
             outputs.addOutput(Output.builder().value(blockchainOutput.getValue())
-                    .txhash(blockchainOutput.getTx_hash())
+                    .txhash(DecodeTxHash.decode(blockchainOutput.getTx_hash()))
                     .outputidk(blockchainOutput.getTx_output_n())
                     .build());
         }

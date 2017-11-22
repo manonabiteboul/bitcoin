@@ -24,6 +24,10 @@ public class UnspentTransactionTest {
     @Mock
     BlockchainRequest blockchainRequest;
 
+    String txhash = "e6452a";
+    String txhashDecoded = "2a45e6";
+
+
     @BeforeMethod
     public void initTest() {
         MockitoAnnotations.initMocks(this);
@@ -56,15 +60,15 @@ public class UnspentTransactionTest {
         Assert.assertEquals(outputs.getOutputs().size(),3);
 
         Assert.assertEquals(outputs.getOutputs().get(0).getValue(),0);
-        Assert.assertEquals(outputs.getOutputs().get(0).getTxhash(),"0");
+        Assert.assertEquals(outputs.getOutputs().get(0).getTxhash(),txhashDecoded);
         Assert.assertEquals(outputs.getOutputs().get(0).getOutputidk(),0);
 
         Assert.assertEquals(outputs.getOutputs().get(1).getValue(),10);
-        Assert.assertEquals(outputs.getOutputs().get(1).getTxhash(),"100");
+        Assert.assertEquals(outputs.getOutputs().get(1).getTxhash(),txhashDecoded);
         Assert.assertEquals(outputs.getOutputs().get(1).getOutputidk(),1);
 
         Assert.assertEquals(outputs.getOutputs().get(2).getValue(),20);
-        Assert.assertEquals(outputs.getOutputs().get(2).getTxhash(),"200");
+        Assert.assertEquals(outputs.getOutputs().get(2).getTxhash(),txhashDecoded);
         Assert.assertEquals(outputs.getOutputs().get(2).getOutputidk(),2);
 
     }
@@ -75,7 +79,7 @@ public class UnspentTransactionTest {
             BlockchainOutput blockchainOutput = new BlockchainOutput();
             blockchainOutput.setValue(10*i);
             blockchainOutput.setTx_output_n(i);
-            blockchainOutput.setTx_hash(String.valueOf(i*100));
+            blockchainOutput.setTx_hash(txhash);
             blockchainOutputs[i] = blockchainOutput;
         }
         return blockchainOutputs;
